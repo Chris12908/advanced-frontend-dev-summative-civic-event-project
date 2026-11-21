@@ -1,0 +1,1 @@
+ALTER TABLE announcements ALTER COLUMN audio_url DROP NOT NULL;

@@ -37,23 +37,16 @@ export const getAnnouncementById = async (req, res, next) => {
 };
 
 /**
- * Create a new announcement (with audio file upload)
+ * Create a new announcement (audio file upload is OPTIONAL)
  */
 export const createAnnouncement = async (req, res, next) => {
     try {
         const { title, published = true } = req.body;
 
-        // Ensure file was uploaded
-        if (!req.file) {
-            return res.status(400).json({
-                status: 400,
-                message: 'Audio file is required',
-            });
-        }
-
-        // Construct full file URL dynamically (based on your server’s base URL)
-        const baseUrl = `${req.protocol}://${req.get('host')}`;
-        const audio_url = `${baseUrl}/uploads/announcements/${req.file.filename}`;
+        // Audio is optional: without a file the announcement has no audio_url.
+        const audio_url = req.file
+            ? `${req.protocol}://${req.get('host')}/uploads/announcements/${req.file.filename}`
+            : null;
 
         // Create announcement
         const created = await AnnouncementModel.create({
