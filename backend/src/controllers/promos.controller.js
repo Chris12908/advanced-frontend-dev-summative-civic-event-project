@@ -36,18 +36,22 @@ export const get = async (req, res, next) => {
 };
 
 /**
- * Create a new promo (admin only)
+ * Create a new promo (admin only).
+ * The video can be an uploaded file OR an http(s) link such as a YouTube URL.
  */
 export const create = async (req, res, next) => {
     try {
-        const { title, description, caption_text } = req.body;
+        const { title, description, caption_text, video_url: videoLink } = req.body;
         const created_by = req.user.id;
 
-        if (!req.file) {
-            return res.status(400).json({ status: 400, message: 'Video file is required' });
+        let video_url;
+        if (req.file) {
+            video_url = `${req.protocol}://${req.get('host')}/uploads/promos/${req.file.filename}`;
+        } else if (videoLink && /^https?:\/\//i.test(videoLink)) {
+            video_url = videoLink;
+        } else {
+            return res.status(400).json({ status: 400, message: 'Provide a video file or a video link' });
         }
-
-        const video_url = `${req.protocol}://${req.get('host')}/uploads/promos/${req.file.filename}`;
 
         const promo = await Promos.create({
             title,
@@ -96,9 +100,11 @@ export const update = async (req, res, next) => {
             published: req.body.published,
         };
 
-        // Optional video upload
+        // Optional new video: uploaded file wins, otherwise an http(s) link
         if (req.file) {
             fieldsToUpdate.video_url = `${req.protocol}://${req.get('host')}/uploads/promos/${req.file.filename}`;
+        } else if (req.body.video_url && /^https?:\/\//i.test(req.body.video_url)) {
+            fieldsToUpdate.video_url = req.body.video_url;
         }
 
         const updated = await Promos.update(id, fieldsToUpdate);
