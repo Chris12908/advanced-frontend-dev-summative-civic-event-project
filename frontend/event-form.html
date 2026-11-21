@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event form · CivicEvents+</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="flex min-h-screen flex-col bg-stone-50 font-sans text-slate-900 antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[60] focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to main content</a>
+<div id="site-header"></div>
+<div class="flex flex-1">
+<div id="sidebar"></div>
+<main id="main" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6 md:px-8">
+<div id="form-wrap" class="max-w-2xl">
+  <a href="events.html" class="text-sm font-semibold text-brand-700 underline">Cancel and go back</a>
+  <h1 id="form-title" class="mt-3 font-display text-3xl font-bold"></h1>
+  <p id="form-error" role="alert" class="mt-4 hidden rounded border border-red-300 bg-red-50 p-3 text-sm text-red-900"></p>
+  <form id="event-form" class="mt-6 space-y-5" novalidate>
+    <div><label for="title" class="block text-sm font-semibold">Title</label>
+      <input id="title" type="text" aria-describedby="title-error" class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2 focus:border-brand-700">
+      <p id="title-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+    <div><label for="description" class="block text-sm font-semibold">Description</label>
+      <textarea id="description" rows="4" aria-describedby="description-error" class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2 focus:border-brand-700"></textarea>
+      <p id="description-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+    <div><label for="location" class="block text-sm font-semibold">Location</label>
+      <input id="location" type="text" aria-describedby="location-error" class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2 focus:border-brand-700">
+      <p id="location-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div><label for="starts_at" class="block text-sm font-semibold">Starts</label>
+        <input id="starts_at" type="datetime-local" aria-describedby="starts_at-error" class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2 focus:border-brand-700">
+        <p id="starts_at-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+      <div><label for="ends_at" class="block text-sm font-semibold">Ends</label>
+        <input id="ends_at" type="datetime-local" aria-describedby="ends_at-error" class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2 focus:border-brand-700">
+        <p id="ends_at-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+    </div>
+    <div><label for="image" class="block text-sm font-semibold">Event image</label>
+      <input id="image" type="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="image-hint image-error" class="mt-1 block w-full rounded border border-slate-400 bg-white p-2 text-sm file:mr-3 file:rounded file:border-0 file:bg-brand-700 file:px-3 file:py-1.5 file:font-semibold file:text-white">
+      <p id="image-hint" class="mt-1 text-sm text-slate-700">JPG, PNG or GIF, up to 2 MB.</p>
+      <p id="image-error" class="mt-1 hidden text-sm text-red-800"></p></div>
+    <img id="preview" src="" alt="" class="hidden h-48 w-full max-w-md rounded object-cover">
+    <div id="progress" class="hidden" role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="h-3 overflow-hidden rounded bg-slate-200"><div id="progress-bar" class="h-full w-0 bg-brand-600 transition-all"></div></div>
+      <p id="progress-text" class="mt-1 text-sm">0%</p></div>
+    <button id="save-btn" type="submit" class="rounded bg-brand-700 px-5 py-2.5 font-semibold text-white hover:bg-brand-800 disabled:opacity-60">Save</button>
+  </form>
+</div>
+</main>
+</div>
+<div id="site-footer"></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/pages/event-form.js"></script>
+</body>
+</html>
