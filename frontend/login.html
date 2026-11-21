@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in · CivicEvents+</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="min-h-screen bg-stone-50 font-sans text-slate-900 antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to main content</a>
+<div class="grid min-h-screen md:grid-cols-2">
+  <aside class="flex flex-col justify-between bg-brand-800 p-8 text-white md:p-12">
+    <div class="flex items-center gap-2">
+      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+      <span class="font-display text-2xl font-bold">CivicEvents<span class="text-sun-400">+</span></span>
+    </div>
+    <div class="py-10">
+      <p class="font-display text-4xl font-bold leading-tight md:text-5xl">Meet nearby.<br>Feel connected.</p>
+      <ul class="mt-8 space-y-4 text-brand-100">
+        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-full bg-white/15" aria-hidden="true">1</span><span><strong class="block text-white">Find events near you</strong>Search, filter and register in a few clicks.</span></li>
+        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-full bg-white/15" aria-hidden="true">2</span><span><strong class="block text-white">Hear community announcements</strong>Short audio updates you can play any time.</span></li>
+        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-full bg-white/15" aria-hidden="true">3</span><span><strong class="block text-white">Watch promos with captions</strong>Accessible videos with full transcripts.</span></li>
+      </ul>
+    </div>
+    <p class="text-sm text-brand-100">Public events, one place.</p>
+  </aside>
+
+  <main id="main" class="flex items-center justify-center p-6 md:p-12">
+    <div class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
+      <h1 class="font-display text-3xl font-bold">Welcome back</h1>
+      <p class="mt-1 text-slate-700">Log in to continue to your community.</p>
+
+      <p id="form-error" role="alert" class="mt-4 hidden rounded border border-red-300 bg-red-50 p-3 text-sm text-red-900"></p>
+
+      <form id="login-form" class="mt-6 space-y-5" novalidate>
+        <div>
+          <label for="email" class="block text-sm font-semibold">Email</label>
+          <input id="email" type="email" autocomplete="email" aria-describedby="email-error"
+                 class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2.5 focus:border-brand-700">
+          <p id="email-error" class="mt-1 hidden text-sm text-red-800"></p>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-semibold">Password</label>
+          <div class="relative">
+            <input id="password" type="password" autocomplete="current-password" aria-describedby="password-error"
+                   class="mt-1 block w-full rounded border border-slate-400 bg-white px-3 py-2.5 pr-16 focus:border-brand-700">
+            <button id="toggle-password" type="button" aria-pressed="false" aria-controls="password"
+                    class="absolute right-2 top-1/2 mt-0.5 -translate-y-1/2 rounded px-2 py-1 text-sm font-semibold text-brand-700 hover:bg-brand-50">Show</button>
+          </div>
+          <p id="password-error" class="mt-1 hidden text-sm text-red-800"></p>
+        </div>
+        <div class="flex items-start gap-2">
+          <input id="remember" type="checkbox" class="mt-1 h-4 w-4">
+          <label for="remember" class="text-sm">Keep me signed in on this device
+            <span class="block text-slate-600">Uses persistent storage. Avoid on shared computers.</span></label>
+        </div>
+        <button id="login-btn" type="submit"
+                class="w-full rounded bg-brand-700 px-4 py-3 font-semibold text-white hover:bg-brand-800 disabled:opacity-60">Log in</button>
+      </form>
+
+      <p class="mt-6 text-sm">New here? <a href="signup.html" class="font-semibold text-brand-700 underline">Create an account</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/pages/login.js"></script>
+</body>
+</html>
